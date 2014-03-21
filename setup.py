@@ -26,7 +26,9 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=[
-        str(x.req) for x in parse_requirements('requirements.txt')],
+        'Flask==0.10.1',
+        'Flask-WTF==0.9.4',
+    ],
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
