@@ -14,7 +14,7 @@ from pip.req import parse_requirements
 
 setup(
     name='Flask-Gfwlist2Pac',
-    version='0.0.1',
+    version='0.0.2',
     url='https://github.com/leoleozhu/flask_gfwlist2pac/',
     license='MIT',
     author='leoleozhu',
