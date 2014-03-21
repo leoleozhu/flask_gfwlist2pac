@@ -1,0 +1,2 @@
+Flask-Gfwlist2Pac==0.0.1
+gunicorn==18.0
