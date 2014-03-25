@@ -5,10 +5,13 @@ import urlparse
 import json
 import logging
 import urllib2
+from werkzeug.contrib.cache import SimpleCache
 
 __all__ = ['generate_pac_for_gfwlist']
 
 gfwlist_url = 'https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt'
+
+cache = SimpleCache()
 
 def decode_gfwlist(content):
     # decode base64 if have to
@@ -104,8 +107,15 @@ def generate_pac(domains, proxy):
     proxy_content = proxy_content.replace('__DOMAINS__', json.dumps(domains_dict, indent=2))
     return proxy_content
 
+def get_gfwlist():
+    gfwlist = cache.get('gfwlist')
+    if not gfwlist:
+        gfwlist = urllib2.urlopen(gfwlist_url, timeout=10).read()
+        cache.set('gfwlist', gfwlist, timeout=3600)
+    return gfwlist
+
 def generate_pac_for_gfwlist(proxy):
-    content = urllib2.urlopen(gfwlist_url, timeout=10).read()
+    content = get_gfwlist()
     content = decode_gfwlist(content)
     domains = parse_gfwlist(content)
     domains = reduce_domains(domains)
