@@ -26,7 +26,7 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask==0.10.1',
+        'Flask==1.0',
         'Flask-WTF==0.9.4',
     ],
     classifiers=[
