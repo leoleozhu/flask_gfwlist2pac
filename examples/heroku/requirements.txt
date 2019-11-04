@@ -1,2 +1,2 @@
 Flask-Gfwlist2Pac==0.0.2
-gunicorn==18.0
+gunicorn==19.5.0
